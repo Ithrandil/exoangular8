@@ -1,1 +1,56 @@
 /* You can add global styles to this file, and also import other style files */
+
+// regular style toast 
+@import '~ngx-toastr/toastr';
+/*
+* Colour variables
+*/
+$titleColor: #2e4168;
+$titleColorOnHover: rgba(46,65,104,0.8);
+
+
+$PSColor1: #61AF81;
+$PSColor2: #168acc;
+$PSColor3: rgba(22,138,204,0.7);
+
+$footerBackground : #2e4168;
+
+
+/*
+* Fonts variables
+*/
+$defaultFontFamily: 'Roboto-Light', Helvetica, serif;
+$boldFontFamily: 'Roboto-Bold', Helvetica, serif;
+$condensedFontFamily: 'RobotoCondensed-Regular', Helvetica, serif;
+$normalFontFamily: 'Roboto-Normal', Helvetica, serif;
+$lightFontFamily: 'Roboto-Light', Helvetica, serif;
+$italicFontFamily : 'Roboto-Italic', Helvetica, serif;
+
+h1, h2, h3{
+    color: $titleColor;
+    font-family: $defaultFontFamily;
+    &:hover { 
+        color:$titleColorOnHover; 
+    }
+}
+
+h1 {
+    font-size: 5em;
+}
+h2{
+    font-size: 3em;
+}
+
+.card-header{
+    background-color: $PSColor2;
+    color: white;
+}
+
+#parkMaxCapacity{
+    color:$PSColor1;
+}
+
+.btn{
+    background-color: $PSColor2;
+    color: white;
+}

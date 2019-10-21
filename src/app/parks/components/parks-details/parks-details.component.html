@@ -1,0 +1,20 @@
+<div class="container">
+  <div class="card m-2">
+    <div class="card-header">Parking name : {{ details.name }}</div>
+    <div class="card-body">
+      <p>Adress : {{ details.address }}</p>
+      <p *ngIf="details.capacityMax">
+        Max capacity : <span id="parkMaxCapacity">{{ details.capacityMax }}</span>
+      </p>
+      <div class="row justify-content-center" *ngIf="details.description">
+        <button class="col-lg-4 btn m-2 align-self-center" (click)="toggleDescription()">
+          {{ displayDescription ? 'Hide description' : 'Show description' }}
+        </button>
+        <p *ngIf="displayDescription" class="col-12" [innerHTML]="details.description">Description : {{ details.description }}</p>
+      </div>
+      <div class="row justify-content-center">
+        <button class="col-lg-4 btn m-2 align-self-center">Réserver</button>
+      </div>
+    </div>
+  </div>
+</div>

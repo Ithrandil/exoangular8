@@ -1,0 +1,30 @@
+<div class="container">
+  <h2 class="row justify-content-center">This is the Moovhub terms page</h2>
+  <div class="row">
+    <button (click)="getAllTermsFromDB()" class="btn btn-primary m-auto d-block">
+      <i class="fas fa-file-contract m-2"></i>Get all terms from DB
+    </button>
+    <button (click)="getTermById('666')" class="btn btn-danger m-auto d-block">
+      <i class="fas fa-skull m-2"></i>Get an unexisting term
+    </button>
+    <button (click)="getOneTermInStoreById('b47aa9a2-d150-11e9-8218-10e7c648c7ad')" class="btn btn-primary m-auto d-block">
+      <i class="fas fa-skull m-2"></i>Get a term from state
+    </button>
+    <button (click)="addTerms()" class="btn btn-info m-auto d-block">Add a hard coded terms</button>
+  </div>
+  <div class="row m-2">
+    <p>
+      Some real id to fetch : 06323558-d151-11e9-8218-10e7c648c7ad // b47aa9a2-d150-11e9-8218-10e7c648c7ad //
+      cd1fdcad-d142-11e9-8218-10e7c648c7ad
+    </p>
+  </div>
+  <div *ngFor="let term of terms$ | async; let i = index" class="row justify-content-center m-2">
+    Id de {{ term.title }} : {{ term.id }} | index: {{ i }}
+  </div>
+</div>
+<app-terms-details
+  *ngFor="let term of terms$ | async"
+  [details]="term"
+  (newTerms)="updateTerms($event)"
+  (idTermsToRemove)="removeOneTermsById($event)"
+></app-terms-details>
