@@ -1,0 +1,21 @@
+@import'../../../../styles.scss';
+
+.container-fluid{
+    margin-bottom: 3px;
+    padding: 3px!important;
+}
+
+.direction-btn{
+    border-radius: 50%;
+    height: 73.45px!important;
+    background-color: $PSColor2;
+    border-width: 1px;
+    border-color: $PSColor3;
+    &:hover{
+        color:$PSColor3;
+    }
+}
+
+.fa-route{
+    font-size: 1.7em;
+}

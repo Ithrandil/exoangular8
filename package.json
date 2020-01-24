@@ -7,7 +7,8 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "compodoc": "npx compodoc -p tsconfig.json"
   },
   "private": true,
   "dependencies": {
@@ -21,9 +22,12 @@
     "@angular/router": "~8.2.9",
     "@ngxs/logger-plugin": "^3.5.1",
     "@ngxs/store": "^3.5.1",
+    "@types/googlemaps": "^3.38.0",
     "bootstrap": "^4.3.1",
     "font-awesome": "^4.7.0",
+    "moment": "^2.24.0",
     "ngx-logger": "^4.0.5",
+    "ngx-smart-modal": "^7.2.1",
     "ngx-toastr": "^11.1.0",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",

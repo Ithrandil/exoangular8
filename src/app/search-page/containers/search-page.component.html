@@ -1,0 +1,13 @@
+<div class="container-fluid">
+  <!-- <div class="row">
+    <div class="offset-5 col-4">
+      <app-search-bar></app-search-bar>
+    </div>
+  </div> -->
+  <div class="row">
+    <div class="col-3">
+      <app-parks-container (parkingGeolocation)="goToParking($event)"></app-parks-container>
+    </div>
+    <div class="col-9"><app-map [parkingLocation]="parkingPosition"></app-map></div>
+  </div>
+</div>

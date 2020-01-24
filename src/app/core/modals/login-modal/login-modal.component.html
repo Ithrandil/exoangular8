@@ -1,0 +1,18 @@
+<ngx-smart-modal class="container" #loginModal customClass="nsm-dialog-animation-ttb modal-sm" identifier="loginModal">
+  <form [formGroup]="form">
+    <fieldset>
+      <legend class="text-center">CONNEXION</legend>
+      <div class="form-field row align-self-center">
+        <label class="col-4 align-self-center">Email:</label>
+        <input class="col-7 align-self-center" name="email" formControlName="email" />
+      </div>
+      <div class="form-field row align-self-center">
+        <label class="col-4 align-self-center">Mot de passe:</label>
+        <input class="col-7 align-self-center" name="password" formControlName="password" type="password" />
+      </div>
+    </fieldset>
+    <div class="form-buttons row justify-content-center">
+      <button class="button btn button-primary" (click)="login()">Se connecter</button>
+    </div>
+  </form>
+</ngx-smart-modal>

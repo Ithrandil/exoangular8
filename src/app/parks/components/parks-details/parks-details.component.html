@@ -1,20 +1,32 @@
-<div class="container">
-  <div class="card m-2">
-    <div class="card-header">Parking name : {{ details.name }}</div>
+<div class="container-fluid">
+  <div class="card">
+    <div class="card-header">{{ details.name }}</div>
     <div class="card-body">
-      <p>Adress : {{ details.address }}</p>
-      <p *ngIf="details.capacityMax">
-        Max capacity : <span id="parkMaxCapacity">{{ details.capacityMax }}</span>
+      <p>Adresse : {{ details.address }}</p>
+      <p>
+        Capacité : <span id="parkMaxCapacity">{{ details.availability }}</span>
+        <span *ngIf="details.capacityMax"> / {{ details.capacityMax }}</span>
       </p>
-      <div class="row justify-content-center" *ngIf="details.description">
-        <button class="col-lg-4 btn m-2 align-self-center" (click)="toggleDescription()">
-          {{ displayDescription ? 'Hide description' : 'Show description' }}
+      <div class="row justify-content-around">
+        <button
+          class="col-lg-4 btn m-2 align-self-center"
+          *ngIf="details.description && details.origin === 'ZP'"
+          (click)="ngxSmartModalService.getModal(details.id_park).open()"
+        >
+          Détails
         </button>
-        <p *ngIf="displayDescription" class="col-12" [innerHTML]="details.description">Description : {{ details.description }}</p>
-      </div>
-      <div class="row justify-content-center">
-        <button class="col-lg-4 btn m-2 align-self-center">Réserver</button>
+        <button (click)="goToParking()" class="col-2 btn m-2 direction-btn" title="Aller à ce parking"><i class="fas fa-route"></i></button>
       </div>
     </div>
   </div>
 </div>
+
+<!-- MODAL -->
+
+<ngx-smart-modal class="container" #myModal customClass="nsm-dialog-animation-ttb modal-lg" [identifier]="details.id_park">
+  <h3 class="row justify-content-center">{{ details.name }}</h3>
+  <div>
+    <img *ngIf="details.main_photo" class="col-12 col-lg-5" [src]="details.main_photo" alt="Photo parking" style="float: left;" />
+    <p class="col-12" [innerHTML]="details.description"></p>
+  </div>
+</ngx-smart-modal>

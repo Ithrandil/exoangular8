@@ -7,11 +7,10 @@ import {
   GetOneTermsFromStateById,
   GetTermsFromDB,
   RemoveOneTerms,
-} from 'src/app/store/actions/terms.actions';
+} from 'src/app/terms/store/terms.actions';
 
-import { TermsState } from '../../../store/state/moovhub.state';
-import { Terms } from '../../models/terms.interface';
 import { TermsService } from '../../services/terms.service';
+import { TermsState } from '../../store/terms.state';
 
 @Component({
   selector: 'app-terms-container',

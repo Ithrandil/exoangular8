@@ -1,5 +1,8 @@
 <div class="container">
-  {{ freeplaces | json }}
-  <h2 class="row justify-content-center">Parkings list</h2>
-  <app-parks-details class="row" *ngFor="let park of parks" [details]="park"></app-parks-details>
+  <app-parks-details
+    class="row"
+    *ngFor="let park of parkings$ | async"
+    [details]="park"
+    (parkingGeolocation)="goToParking($event)"
+  ></app-parks-details>
 </div>

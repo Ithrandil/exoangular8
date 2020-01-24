@@ -1,0 +1,19 @@
+@import '../../../styles.scss';
+
+.container-searchbar{
+    border-style: solid;
+    border-color: $PSColor2;
+    border-width: 3px;
+    height: 98px;
+    background-color: white;;
+}
+
+.searchbar{
+    border-style: none;
+    height: 50%;
+    outline-color: $PSColor2;
+}
+
+.btn{
+    background-color: white!important;
+}

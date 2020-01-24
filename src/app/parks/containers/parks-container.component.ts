@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Select, Store } from '@ngxs/store';
+import { Observable } from 'rxjs';
 
-import { Parks } from '../models/parks.interface';
-import { ParksService } from '../services/parks-service.service';
+import { GetEnrichedParkings } from '../store/parks.store';
 
 @Component({
   selector: 'app-parks-container',
@@ -9,12 +10,17 @@ import { ParksService } from '../services/parks-service.service';
   styleUrls: ['./parks-container.component.scss']
 })
 export class ParksContainerComponent implements OnInit {
-  parks: Parks[];
-  freeplaces: object[];
-  constructor(private parksService: ParksService) {}
+  @Output()
+  parkingGeolocation = new EventEmitter();
+
+  @Select('ParksState.collectionEnrichedParkings') parkings$: Observable<any[]>;
+  constructor(private store: Store) {}
 
   ngOnInit() {
-    this.parksService.getAllParks().subscribe((parksFromDB: Parks[]) => (this.parks = parksFromDB));
-    this.parksService.getFreePlaces().subscribe((freePlacesFromDB: []) => (this.freeplaces = freePlacesFromDB));
+    this.store.dispatch(new GetEnrichedParkings());
+  }
+
+  goToParking(parkingPosition) {
+    this.parkingGeolocation.emit(parkingPosition);
   }
 }

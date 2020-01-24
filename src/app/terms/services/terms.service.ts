@@ -10,11 +10,11 @@ import { environment as env } from '../../../environments/environment';
 export class TermsService {
   constructor(private http: HttpClient) {}
 
-  getAllTerms(): Observable<any> {
-    return this.http.get(`${env.SERVER_URL}/terms`);
+  getAllTerms(): Observable<Terms[]> {
+    return this.http.get<Terms[]>(`${env.SERVER_URL}/terms`);
   }
 
-  getTermById(id: string): Observable<any> {
-    return this.http.get(`${env.SERVER_URL}/terms/${id}`);
+  getTermById(id: string): Observable<Terms> {
+    return this.http.get<Terms>(`${env.SERVER_URL}/terms/${id}`);
   }
 }

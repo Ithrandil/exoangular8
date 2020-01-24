@@ -1,5 +1,9 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" routerLink="/home" routerLinkActive="active">Moov'hub 0.1</a>
+<nav class="navbar navbar-expand-lg navbar-light bg-white">
+  <a class="navbar-brand" routerLink="/home" routerLinkActive="active"
+    ><img id="logoPsNav" src="../../../../assets/images/Logo_ligne_ParkinSaclay_RVB_petit.png" alt="Logo ParkinSaclay" />
+    <img id="logoInovNav" class="ml-3" src="../../../../assets/images/logo_innovation_black_small.png" alt="Logo Innovation" />
+  </a>
+  <!-- BUTTON FOR THE MOBILE VERSION -->
   <button
     class="navbar-toggler"
     type="button"
@@ -11,11 +15,49 @@
   >
     <span class="navbar-toggler-icon"></span>
   </button>
+  <div class="collapse navbar-collapse mx-auto" id="navbarNavAltMarkup">
+    <div class="navbar-nav mx-auto">
+      <a class="nav-item nav-link active" routerLink="/home" routerLinkActive="active">ACCUEIL</a>
+      <a class="nav-item nav-link" routerLink="/terms" routerLinkActive="active">A PROPOS</a>
+      <a class="nav-item nav-link" routerLink="/help" routerLinkActive="active">AIDE</a>
+    </div>
+  </div>
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-    <div class="navbar-nav">
-      <a class="nav-item nav-link" routerLink="/parks" routerLinkActive="active">Parks</a>
-
-      <a class="nav-item nav-link" routerLink="/terms" routerLinkActive="active">Terms</a>
+    <div class="navbar-nav ml-auto">
+      <a class="nav-item nav-link nav-left" routerLink="/search" routerLinkActive="active"
+        ><i class="fas fa-search-location"></i> RECHERCHE</a
+      >
+      <div class="nav-item dropdown">
+        <a
+          *ngIf="!(isLoggedIn$ | async)"
+          class="nav-item nav-link nav-left dropdown-toggle"
+          id="navbarDropdown"
+          role="button"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+          ><i class="fas fa-user"></i> MON COMPTE</a
+        >
+        <a
+          *ngIf="isLoggedIn$ | async"
+          class="nav-item nav-link nav-left dropdown-toggle"
+          id="navbarDropdown"
+          role="button"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+          ><i class="fas fa-user"></i> {{ (connectedUser$ | async).email }}</a
+        >
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" *ngIf="!(isLoggedIn$ | async)">S'INSCRIRE</a>
+          <div class="dropdown-divider" *ngIf="!(isLoggedIn$ | async)"></div>
+          <a class="dropdown-item" *ngIf="!(isLoggedIn$ | async)" (click)="modalService.getModal('loginModal').open()">SE CONNECTER</a>
+          <a class="dropdown-item" *ngIf="isLoggedIn$ | async" routerLink="/mydata" routerLinkActive="active">MES INFOS</a>
+          <div class="dropdown-divider" *ngIf="isLoggedIn$ | async"></div>
+          <a class="dropdown-item" *ngIf="isLoggedIn$ | async" (click)="logOut()">SE DECONNECTER</a>
+        </div>
+      </div>
     </div>
   </div>
 </nav>
+<app-login-modal></app-login-modal>

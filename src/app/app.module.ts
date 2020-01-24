@@ -1,30 +1,42 @@
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ErrorHandler, NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
 import { NgxsModule } from '@ngxs/store';
 import { LoggerModule } from 'ngx-logger';
+import { NgxSmartModalModule } from 'ngx-smart-modal';
 import { ToastrModule } from 'ngx-toastr';
 
 import { environment as env } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { AuthInterceptor } from './core/auth/auth.interceptor';
 import { HomeComponent } from './core/components/home/home.component';
 import { NavigationComponent } from './core/components/navigation/navigation.component';
 import { PageNotFoundComponent } from './core/components/page-not-found/page-not-found.component';
 import { CustomErrorHandler } from './core/error-management/custom-error-handler';
+import { LoginModalModule } from './core/modals/login-modal/login-modal.module';
+import { UserState } from './core/stores/user.store';
+import { MyDataComponent } from './my-data/my-data.component';
 import { ParksModule } from './parks/parks.module';
-import { TermsState } from './store/state/moovhub.state';
+import { SearchPageModule } from './search-page/search-page.module';
+import { SearchBarModule } from './shared/search-bar/search-bar.module';
+import { TermsState } from './terms/store/terms.state';
 import { TermsModule } from './terms/terms.module';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, PageNotFoundComponent, NavigationComponent],
+  declarations: [AppComponent, HomeComponent, PageNotFoundComponent, NavigationComponent, MyDataComponent],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     TermsModule,
     ParksModule,
+    LoginModalModule,
+    ReactiveFormsModule,
+    SearchBarModule,
+    SearchPageModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot({
       timeOut: env.TOASTR_TIMEOUT,
@@ -41,11 +53,16 @@ import { TermsModule } from './terms/terms.module';
       httpResponseType: env.LOGGER_HTTP_RESPONSE_TYPE
       // TESTER LES DIFF POSSIBILITE COUPLEE A LA GESTION DANS LE BACK
     }),
-    NgxsModule.forRoot([TermsState], { developmentMode: !env.production }),
+    NgxsModule.forRoot([TermsState, UserState], { developmentMode: !env.production }),
     NgxsReduxDevtoolsPluginModule.forRoot({ disabled: env.production }),
-    NgxsLoggerPluginModule.forRoot({ disabled: env.production })
+    NgxsLoggerPluginModule.forRoot({ disabled: env.production }),
+    NgxSmartModalModule.forRoot(),
+    AppRoutingModule // Should always be last routing module declared
   ],
-  providers: [{ provide: ErrorHandler, useClass: CustomErrorHandler }],
+  providers: [
+    { provide: ErrorHandler, useClass: CustomErrorHandler },
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

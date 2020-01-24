@@ -1,0 +1,95 @@
+@import '../../../../styles.scss';
+//BLOCK WITH SEARCHBAR
+.pres-home{
+    background-image: url(https://www.parkinsaclay.fr/presentation-application-parkinsaclay.f6a91db841d76dc0ba27.png);
+    background-repeat: no-repeat;
+    background-size: auto 100%;
+    height: 436px;
+}
+
+.pres-title-1{
+    font-size: 36px;
+    font-weight: bold;
+    letter-spacing: .1em;
+    color: white;
+}
+
+.pres-title-2{
+    font-size: 36px;
+    letter-spacing: .1em;
+    color: white;
+}
+
+.beta-test-gradiented {
+    height: 638px;
+    background: -moz-linear-gradient(top, rgba(110,187,121,1), rgba(22,138,204,1)); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top,rgba(110,187,121,1),rgba(22,138,204,1) ); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom,rgba(110,187,121,1),rgba(22,138,204,1)); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7*/
+}
+
+.popular-search{
+    padding-top: 25px;
+    height: 50px;
+    color: white;
+}
+
+.popular-btn{
+    border-color: white;
+    background-color: transparent;
+    margin: 4px;
+    border-radius: 0px!important;
+    &:hover{
+        color: white;
+        background-color: rgba(255,255,255,0.5);
+    }
+}
+
+//BLOCK WITH PHONES SCREENS
+
+h2{
+    &:hover{
+    color:$titleColor;
+    }
+}
+
+.phone-screens{
+    max-height: 630px;
+}
+
+//BLOCK WHY PS
+.why-container{
+    border-top: 0.5px solid rgba(128, 128, 128, 0.8);
+    background-color: #f3fafa;
+}
+.why-title{
+    margin-top: 20px;
+}
+
+//BLOCK 4 SQUARES
+
+.square-container{
+    h3{
+        color: white;
+    }
+    p{
+        font-size: 19px;
+        color: #b1c6dd;
+    }
+}
+.img-square{
+    height: 120px;
+    float: left;
+    margin-right: 2em;
+}
+.square-1{
+    background-color: #395277;
+}
+.square-2{
+    background-color: #435d83;
+}
+.square-3{
+    background-color: #4d678d;
+}
+.square-4{
+    background-color: #587299;
+}

@@ -1,6 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-
-import { Parks } from '../../models/parks.interface';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { NgxSmartModalService } from 'ngx-smart-modal';
 
 @Component({
   selector: 'app-parks-details',
@@ -9,15 +8,16 @@ import { Parks } from '../../models/parks.interface';
 })
 export class ParksDetailsComponent implements OnInit {
   @Input()
-  details: Parks;
+  details: any;
 
-  displayDescription = false;
+  @Output()
+  parkingGeolocation = new EventEmitter();
 
-  constructor() {}
+  constructor(public ngxSmartModalService: NgxSmartModalService) {}
 
   ngOnInit() {}
 
-  toggleDescription() {
-    this.displayDescription = !this.displayDescription;
+  goToParking() {
+    this.parkingGeolocation.emit({ lat: this.details.latitude, lng: this.details.longitude });
   }
 }
